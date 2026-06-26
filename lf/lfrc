@@ -1,0 +1,174 @@
+# --- CONFIGURACIÓN BÁSICA ---
+set hidden
+set scrolloff 3
+#set wrap On/off
+set preview true
+set drawbox true
+set icons true
+set info size:time
+
+# Editor por defecto (Vim)
+set shell sh
+set shellopts '-eu'
+# PREVIEW ALL
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
+# --- ATAJOS DE TECLAS ---
+# Salir
+map q quit
+
+# renombrar
+map r rename
+
+# Toggle archivos ocultos
+map o :set hidden=toggle
+
+# Abrir en NVim
+map e $nvim "$f"
+cmd nvim-term ${{
+    kitty -e nvim "$f" 2>/dev/null &
+}}
+map E nvim-term
+
+cmd zen %{
+    case "$f" in
+        *.pdf|*.doc|*.docx) zen "$f" & ;;
+        *) xdg-open "$f" & ;;
+    esac
+}
+
+
+# Abrir imágenes 
+map i !kitten icat "$f"
+
+# Reproducir videos con mpv
+map v !mpv "$f"
+
+# Descomprimir ZIP
+map u !unzip "$f"
+
+
+# Crear directorio
+# 1) al pulsar 'n' abre el prompt :mkdir␣ para que escribas el nombre
+map n push :mkdir<space>
+# 2) define el comando 'mkdir' que llame al mkdir del sistema pasando los argumentos
+cmd mkdir $mkdir $*
+
+
+# Borrar archivo o carpeta
+map d :delete
+cmd delete-force ${{
+    rm -rf $fx
+}}
+map D delete-force # delete sin preguntar
+
+
+# Copiar ruta actual al portapapeles
+cmd copyclip ${{
+  printf '%s' "$f" | wl-copy
+}}
+map y copyclip
+
+
+
+# Guardar archivo a copiar / mandar al clipboard
+cmd copyfile ${{
+    printf '%s' "$f" > ~/.local/share/lf-copy-buffer
+    mimetype=$(file --mime-type -b "$fx")
+    case "$mimetype" in
+        text/*)
+            printf '%s' "$fx" | wl-copy
+            ;;
+        *)
+            wl-copy --type "$mimetype" < "$fx"
+            ;;
+    esac
+}}
+map c copyfile
+
+# Pegar archivo en directorio actual
+cmd pastefile ${{
+    dest="$PWD/$(basename "$(cat ~/.local/share/lf-copy-buffer)")"
+    cp -iv "$(cat ~/.local/share/lf-copy-buffer)" "$dest"
+}}
+map p pastefile
+
+
+
+
+
+
+
+
+
+
+# --- NAVEGACIÓN RÁPIDA ---
+# Ir a home
+map gh cd ~
+# Ir a descargas
+map gd cd ~/Descargas
+# Ir a documentos
+map gc cd ~/.config
+#Ir a .local bin
+map gb cd ~/.local/bin
+#Ir a wallpaper
+map gw cd ~/wallpapers
+# SERVER
+map gs cd /srv/NAS/
+# Ir a imagenes
+map gi cd ~/Imágenes
+
+# --- MOVERSE ENTRE MARCAS ---
+#mark a ~/Descargas
+#mark b ~/Documentos
+#mark c ~/Imágenes
+
+
+#fzf buscador global :v
+cmd fzf_open ${{
+    results="$($HOME/.local/bin/fzf-preview/fzf-preview.sh -m)"  # usa selección múltiple
+    [ -n "$results" ] || exit 0
+
+    for file in $results; do
+        case "$file" in
+            *.txt|*.md|*.json|*.yaml|*.yml|*.ini|*.py|*.c|*.cpp|*.sh|*.rs|*.go)
+                nvim "$file" ;;
+            *)
+                xdg-open "$file" >/dev/null 2>&1 ;;
+        esac
+    done
+}}
+map f :fzf_open
+
+
+# Guardar archivo a mover (cortar)
+cmd cutfile ${{
+    printf '%s' "$f" > ~/.local/share/lf-cut-buffer
+}}
+map x cutfile #CORTAR 01
+# Pegar archivo cortado en directorio actual
+cmd pastecut ${{
+    dest="$PWD/$(basename "$(cat ~/.local/share/lf-cut-buffer)")"
+    mv -iv "$(cat ~/.local/share/lf-cut-buffer)" "$dest"
+    rm -f ~/.local/share/lf-cut-buffer
+}}
+map X pastecut #CORTAR 02
+
+
+
+
+# ~/.config/lf/open_with_zen.sh
+#!/bin/bash
+
+file="$1"
+
+if [[ "$file" == *.pdf ]]; then
+    zen "$file"
+else
+    xdg-open "$file"
+fi
+
+
