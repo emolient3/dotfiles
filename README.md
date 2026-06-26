@@ -13,13 +13,12 @@
 ### 🪟 Window Manager
 | Paquete | Descripción |
 |---|---|
-| `hyprland` | Compositor Wayland dinámico |
-| `waybar` | Barra de estado personalizable |
+| [`hyprland`](https://github.com/hyprwm/hyprland) | Compositor Wayland dinámico |
 
 ### 💻 Terminal
 | Paquete | Descripción |
 |---|---|
-| `kitty`  | Emulador de terminal|
+| [`kitty`](https://github.com/kovidgoyal/kitty)  | Emulador de terminal|
 | `zsh` | Shell interactiva |
 
 ### 📁 File Manager
