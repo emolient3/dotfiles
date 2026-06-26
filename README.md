@@ -1,6 +1,6 @@
 # # 🌙 Dotfiles
 
-Mis configuraciones personales para un entorno **Hyprland** minimalista en Arch Linux.
+	ᕕ(╭ರ╭ ͟ʖ╮•́)⊃¤=(————-
 
 ![Hyprland](https://img.shields.io/badge/Hyprland-58E1FF?style=for-the-badge&logo=hyprland&logoColor=black)
 ![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)
@@ -32,7 +32,6 @@ Mis configuraciones personales para un entorno **Hyprland** minimalista en Arch 
 |---|---|
 | `bat` | resaltado de sintaxis |
 | `chafa` | Renderizado de imágenes en terminal |
-| `ffmpeg` | Procesamiento de audio/video |
 
 ### ✏️ Editor
 | Paquete | Descripción |
