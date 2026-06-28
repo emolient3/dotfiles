@@ -65,24 +65,6 @@ hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "al
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
 
-------------------------------------------
----- SMART GAPS (desactivado, igual que en tu original) ----
-------------------------------------------
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding = 0,
--- })
--- hl.window_rule({
---     name = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding = 0,
--- })
-
 ----------------------
 ---- LAYOUTS ----
 ----------------------
@@ -143,10 +125,6 @@ hl.config({
 -------------------------------
 ---- OPACIDAD POR APP ----
 -------------------------------
--- ⚠️ No tengo 100% de certeza del formato del campo "opacity" en lua.
--- Pruébalo primero: hyprctl repl > hl.dispatch(hl.dsp.window... )
--- (las window_rules no se prueban igual que dispatchers, así que aquí
--- lo más seguro es guardar el archivo y ver con tus propios ojos si aplica)
 hl.window_rule({ name = "opacity-zen", match = { class = "^(zen)$" }, opacity = "0.9 0.9" })
 hl.window_rule({ name = "opacity-steam", match = { class = "^(steam)$" }, opacity = "0.94 0.94" })
 hl.window_rule({ name = "opacity-discord", match = { class = "^(discord)$" }, opacity = "1 1" })
@@ -154,7 +132,7 @@ hl.window_rule({ name = "opacity-spotify", match = { class = "^(Spotify)$" }, op
 hl.window_rule({
 	name = "opacity-whatsapp",
 	match = { class = "^(chrome-web.whatsapp.com__-Default)$" },
-	opacity = "0.85 0.85",
+	opacity = "1.0 1.0",
 })
 hl.window_rule({
 	name = "opacity-chatgpt-tab",
@@ -162,5 +140,3 @@ hl.window_rule({
 	opacity = "0.8 0.8",
 })
 hl.window_rule({ name = "opacity-x-tab", match = { title = "(Inicio / X — Mozilla Firefox)" }, opacity = "0.8 0.8" })
-
--- windowrulev2 opacity para firefox y noblur de firefox/spotify estaban comentados, los omití

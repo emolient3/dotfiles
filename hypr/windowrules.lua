@@ -80,6 +80,12 @@ hl.window_rule({
 	no_blur = true,
 })
 
+hl.window_rule({
+	name = "noblur-discord-tiled",
+	match = { class = "discord", float = false },
+	no_blur = true,
+})
+
 ----------------------------------------
 ---- MONITOR SELECTOR / WALLPAPER ----
 ----------------------------------------

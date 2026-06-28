@@ -11,7 +11,7 @@ list=$(jq -r '.[] | select(.mapped == true) | "\(.address)\t\(.title // "(no tit
 # si no hay ventanas, salir
 [ -z "$list" ] && exit 0
 
-# elegir con wofi (dmenu mode)
+# (dmenu mode)
 selection=$(printf '%s\n' "$list" | wofi --show dmenu --prompt "Ventanas:")
 
 # si canceló, salir
@@ -22,4 +22,3 @@ address=$(printf '%s' "$selection" | cut -f1)
 
 # enfocar la ventana elegida
 hyprctl dispatch focuswindow address:$address
-

@@ -3,7 +3,7 @@ local mainMod = "SUPER"
 local menu = "..." -- ajusta esto a lo que tenías como $menu
 
 ---------------------------
----- BINDS BÁSICOS ----
+---- BINDS BÁSICS ----
 ---------------------------
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + W", hl.dsp.window.close())
@@ -24,7 +24,7 @@ hl.bind(mainMod .. " + ALT + j", hl.dsp.window.resize({ x = 0, y = -20, relative
 hl.bind(mainMod .. " + ALT + k", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 
 -------------------------------------
----- MOVER FOCO (HJKL vim) ----
+---- MOVER FOCUS ----
 -------------------------------------
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
@@ -72,9 +72,6 @@ hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "down" }))
 ----------------------------------
 ---- FULLSCREEN / MAXIMIZE ----
 ----------------------------------
--- ⚠️ Tampoco tengo el formato exacto confirmado del argumento.
--- El viejo "fullscreen, 1" = maximizar (mantiene gaps/barra).
--- Prueba: hl.dsp.window.fullscreen({ state = 1 }) o similar
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 -----------------------------------------
 ---- MOVER VENTANA EN EL LAYOUT ----
@@ -156,7 +153,7 @@ hl.bind("ALT + Tab", function()
 end)
 
 hl.bind(mainMod .. " + SHIFT + x", hl.dsp.exec_cmd("/home/cali/.local/bin/toggle_basura_workspace.sh"))
-hl.bind(mainMod .. " + i", hl.dsp.exec_cmd("/home/cali/.local/bin/config.sh"))
+hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd("/home/cali/.local/bin/config.sh"))
 hl.bind(mainMod .. " + b", hl.dsp.exec_cmd("/home/cali/.local/bin/toggle-hyprpanel.sh"))
 
 -- Screenshots

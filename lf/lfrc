@@ -7,7 +7,7 @@ set drawbox true
 set icons true
 set info size:time
 
-# Editor por defecto (Vim)
+# Editor por defecto (NVim)
 set shell sh
 set shellopts '-eu'
 # PREVIEW ALL
@@ -106,20 +106,14 @@ map p pastefile
 
 
 # --- NAVEGACIÓN RÁPIDA ---
-# Ir a home
 map gh cd ~
-# Ir a descargas
 map gd cd ~/Descargas
-# Ir a documentos
 map gc cd ~/.config
-#Ir a .local bin
 map gb cd ~/.local/bin
-#Ir a wallpaper
 map gw cd ~/wallpapers
-# SERVER
 map gs cd /srv/NAS/
-# Ir a imagenes
 map gi cd ~/Imágenes
+map gD cd ~/.dotfiles
 
 # --- MOVERSE ENTRE MARCAS ---
 #mark a ~/Descargas
@@ -144,7 +138,7 @@ cmd fzf_open ${{
 map f :fzf_open
 
 
-# Guardar archivo a mover (cortar)
+# MOVE FICHERO (cortar)
 cmd cutfile ${{
     printf '%s' "$f" > ~/.local/share/lf-cut-buffer
 }}
@@ -157,18 +151,5 @@ cmd pastecut ${{
 }}
 map X pastecut #CORTAR 02
 
-
-
-
-# ~/.config/lf/open_with_zen.sh
-#!/bin/bash
-
-file="$1"
-
-if [[ "$file" == *.pdf ]]; then
-    zen "$file"
-else
-    xdg-open "$file"
-fi
 
 
